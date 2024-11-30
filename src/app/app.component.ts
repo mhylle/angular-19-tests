@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoInputComponent } from './components/todo-input/todo-input.component';
 import { TodoService } from './services/todo.service';
+import { TodoStatus } from './models/todo.model';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +17,20 @@ import { TodoService } from './services/todo.service';
       
       <app-todo-list />
       
-      <div class="mt-4 text-sm text-gray-600">
+      <div class="mt-4 text-sm text-gray-600 space-y-1">
         <div>Total todos: {{ todoService.todoCount() }}</div>
+        <div>To Do: {{ todoCount() }}</div>
+        <div>In Progress: {{ todoService.inProgressCount() }}</div>
         <div>Completed: {{ todoService.completedCount() }}</div>
-        <div>Remaining: {{ todoService.remainingCount() }}</div>
       </div>
     </main>
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  todoCount = computed(() => 
+    this.todoService.todos().filter(t => t.status === TodoStatus.TODO).length
+  );
+
   constructor(public todoService: TodoService) {}
 }

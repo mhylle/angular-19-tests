@@ -23,13 +23,7 @@ import { TodoService } from './services/todo.service';
       </div>
     </main>
   `,
-  styles: [`
-    :host {
-      display: block;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-  `]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   constructor(public todoService: TodoService) {}

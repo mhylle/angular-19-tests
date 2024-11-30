@@ -16,10 +16,11 @@ import { TodoService } from './services/todo.service';
       
       <app-todo-list />
       
-      <div class="mt-4 text-sm text-gray-600">
+      <div class="mt-4 text-sm text-gray-600 space-y-1">
         <div>Total todos: {{ todoService.todoCount() }}</div>
+        <div>To Do: {{ todoService.todos().filter(t => t.status === 'TODO').length }}</div>
+        <div>In Progress: {{ todoService.inProgressCount() }}</div>
         <div>Completed: {{ todoService.completedCount() }}</div>
-        <div>Remaining: {{ todoService.remainingCount() }}</div>
       </div>
     </main>
   `,

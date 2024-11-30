@@ -88,7 +88,8 @@ export class TodoService {
   }
 
   clearCompleted() {
-    const updatedTodos = this._todos().filter(todo => todo.status !== TodoStatus.COMPLETED);
+    const updatedTodos = this._todos()
+      .filter(todo => todo.status !== TodoStatus.COMPLETED);
     this._todos.set(updatedTodos);
     this.saveTodos(updatedTodos);
   }
